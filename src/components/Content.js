@@ -8,7 +8,6 @@ import { count } from "../store/actions"
 export default function Content() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log('xxxxxxx', state.account)
   return (
   	<Container>
   		Count: {state.count}

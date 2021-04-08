@@ -24,6 +24,7 @@ export const loadAccount = async (web3, dispatch) => {
     return account
   } else {
     dispatch(web3AccountLoaded(null))
+    console.log('logout')
     return null
   }
 }

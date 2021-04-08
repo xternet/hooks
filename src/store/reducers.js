@@ -1,4 +1,5 @@
 import { theme } from "../theme";
+import { combineReducers } from 'redux';
 
 export const initialState = {
   balance: null,
@@ -28,9 +29,9 @@ export function reducer(state, action) {
     case 'WEB3_ACCOUNT_LOADED':
       return { ...state, account: action.payload }
     case 'increment':
-      return { ...state, count: state.count + 1}
+      return { ...state, count: state.count + 1 }
     case 'decrement':
-      return { ...state, count: state.count - 1}
+      return { ...state, count: state.count - 1 }
     case "setTheme":
       return { ...state, currentTheme: action.value };
     case "updateTheme":
@@ -43,6 +44,8 @@ export function reducer(state, action) {
       return { ...state, currentTheme: theme[newThemeKey] };
     }
     default:
-      throw new Error();
+      return state;
   }
 }
+
+export const rootReducer = combineReducers({ initialState, reducer })
