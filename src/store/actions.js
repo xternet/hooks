@@ -12,3 +12,17 @@ export function web3AccountLoaded(account) {
     payload: account
   }
 }
+
+// export function add() {
+//   return {
+//     type: 'increment',
+//   }
+// }
+
+const increment = () => {
+  return {
+    type: "increment"
+  }
+}
+
+export default increment

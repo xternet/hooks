@@ -1,10 +1,11 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components"
+import { createStore, applyMiddleware, compose } from 'redux'
 import React, { createContext, useReducer } from "react"
 import { initialState, reducer } from "./store/reducers"
 import { update } from "./store/interactions"
+import { createLogger } from 'redux-logger'
 import Content from "./components/Content"
-import { Provider } from "react-redux"
-import { createStore } from "redux"
+import { Provider, useSelector, useDispatch, shallowEqual } from "react-redux"
 import Nav from "./components/Nav"
 import ReactDOM from "react-dom"
 import { theme } from "./theme"
@@ -13,14 +14,17 @@ import { theme } from "./theme"
  * integrate connect button
  * if logged in appear address
 */
-
-
 export const AppContext = createContext();
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const account = useSelector(state => state.account);
+  const connection = useSelector(state => state.connection);
+  const currentTheme = useSelector(state => state.currentTheme);
+  const toggleTheme = useSelector(state => state.toggleTheme);
 
-  if(window.ethereum && state.connection===null){
+  const dispatch = useDispatch();
+
+  if(window.ethereum && connection===null){
     update(dispatch)
 
     window.ethereum.on('accountsChanged', () => { update(dispatch) });
@@ -30,8 +34,8 @@ function App() {
   // console.log('state web3', state.connection)
   // console.log('state account', state.account)
   return (
-    <ThemeProvider theme={state.currentTheme}>
-      <AppContext.Provider value={{ ...state, dispatch }}>
+    <ThemeProvider theme={currentTheme}>
+      <AppContext.Provider value={toggleTheme}>
         <GlobalStyles />
         <Nav />
         <Content />
@@ -52,8 +56,19 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+const loggerMiddleware = createLogger()
+const middleware = []
+
+// For Redux Dev Tools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 ReactDOM.render(
-  <Provider store={createStore(reducer)}>
+  <Provider store={
+    createStore(
+      reducer,
+      initialState,
+      composeEnhancers(applyMiddleware(...middleware, loggerMiddleware))
+      )}>
     <App />
   </Provider>,
   document.getElementById("root")

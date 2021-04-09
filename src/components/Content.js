@@ -3,15 +3,15 @@ import { initialState, reducer } from "../store/reducers";
 import { update } from "../store/interactions"
 import styled, { css } from 'styled-components'
 import { AppContext } from "../index";
-import { count } from "../store/actions"
+import { Provider, useSelector, useDispatch, shallowEqual } from "react-redux";
 
 export default function Content() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const count = useSelector(state => state.count);
+  const dispatch = useDispatch();
 
   return (
   	<Container>
-  		Count: {state.count}
-      Account: {state.account}
+      {count}
   		<br></br>
   		<Button onClick={() => dispatch({type: 'decrement'})}>-</Button>
   		<Button onClick={() => dispatch({type: 'increment'})}>+</Button>

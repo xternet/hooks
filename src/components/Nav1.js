@@ -4,20 +4,17 @@ import styled from "styled-components"
 import { AppContext } from "../index"
 import { update } from "../store/interactions"
 import { Provider, useSelector, useDispatch, shallowEqual } from "react-redux"
+import add from "../store/actions"
 
 export default function Nav1() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  
-  const count = useSelector(state => state);
-  // const logFunc = () => {
-  //   //console.log('xxx', state)
-  //   dispatch({type: 'decrement'})
-  // };
+  const account = useSelector(state => state.account);
+  const dispatch = useDispatch();
+
 
   return (
     <div>
-    Count: {state.count}
-    <Button onClick={() => dispatch({type: 'decrement'})}>-</Button>
+    {account}
+    <Button onClick={() => dispatch(add())}>-</Button>
     </div>
   );
 }

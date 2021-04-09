@@ -4,9 +4,11 @@ import styled from "styled-components";
 import { AppContext } from "../index";
 import { update } from "../store/interactions"
 import Nav1 from "./Nav1"
+import { Provider, useSelector, useDispatch, shallowEqual } from "react-redux"
 
 export default function Nav() {
-  const { dispatch } = useContext(AppContext);
+  // const { dispatch } = useContext(AppContext);
+    const dispatch = useDispatch();
 
   const toggleTheme = () => {
     dispatch({ type: "toggleTheme" });
