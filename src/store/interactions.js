@@ -32,7 +32,6 @@ export const loadNetwork = async (dispatch, web3) => {
 export const loadAccount = async (web3, dispatch) => {
   const accounts = await web3.eth.getAccounts()
   const account = await accounts[0]
-  console.log('xxxxxx', account)
   if(typeof account !== 'undefined'){
     dispatch(web3AccountLoaded(account))
     return account
@@ -53,14 +52,25 @@ export const loadBalance = async (dispatch, web3, account) => {
   }
 }
 
+// export const loadContract = async (dispatch, web3, netId) => {
+//   try {
+//     const contractABI = []
+//     const contractAddress = ''
+//     const contract = new web3.eth.Contract(contractABI, contractAddress)
+//     dispatch(contractLoaded(contract)) //create in action.js and add to reducers.js
+//     return contract
+//   } catch (e) {
+//     console.log('Error, load contract: ', e)
+//   }
+// }
+
 export const update = async (dispatch) => {
-  let account, web3, network, netId
+  let account, web3
 
   web3 = await loadWeb3(dispatch)
   account = await loadAccount(web3, dispatch)
-  network = await loadNetwork(dispatch, web3)
-  // netId = await web3.eth.net.getId()
-  // balance =
+
+  await loadNetwork(dispatch, web3)
 
   if(account){
     await loadBalance(dispatch, web3, account)

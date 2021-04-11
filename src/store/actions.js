@@ -27,25 +27,6 @@ export function web3BalanceLoaded(balance) {
   }
 }
 
-// export function contractLoaded(contract) {
-//   return {
-//     type: 'CONTRACT_LOADED',
-//     contract
-//   }
-// }
-
-// export function add() {
-//   return {
-//     type: 'increment',
-//   }
-// }
-
-// const toggleTheme = () => {
-//   return {
-//     type: "toggleTheme"
-//   }
-// }
-
 export function toggleTheme() {
   return {
     type: "toggleTheme"

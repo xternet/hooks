@@ -1,21 +1,23 @@
 {
-  "name": "react",
+  "name": "dapp_hooks_template",
   "version": "1.0.0",
-  "description": "React example starter project",
+  "description": "React dApp template with Hooks&Redux&Web3",
+  "homepage": ".",
   "keywords": [
     "react",
-    "starter"
+    "starter",
+    "template",
+    "dapp",
+    "web3",
+    "ethereum"
   ],
-  "main": "src/index.js",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.5.1",
     "react": "16.12.0",
-    "react-dom": "^16.12.0",
-    "react-redux": "^7.2.3",
+    "react-dom": "16.12.0",
+    "react-redux": "7.2.3",
     "react-scripts": "3.0.1",
-    "redux": "^4.0.5",
-    "redux-logger": "^3.0.6",
-    "reselect": "^4.0.0",
+    "redux": "4.0.5",
+    "redux-logger": "3.0.6",
     "styled-components": "5.0.1",
     "web3": "1.2.6"
   },

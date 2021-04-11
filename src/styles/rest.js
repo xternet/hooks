@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components"
 import styled from "styled-components";
-//import styled, { css } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
   html, body {
@@ -46,6 +45,8 @@ export const NavLink = styled.div`
 
 export const NavToggle = styled(NavLink)`
   text-decoration: underline;
+  position: static;
+  color: red;
 `;
 
 export const Button = styled.button`
@@ -54,7 +55,7 @@ export const Button = styled.button`
   color: ${props => props.primary ? "white" : "palevioletred"};
 
   font-size: 1em;
-  margin: 1em;
+  margin: 0em;
   padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;

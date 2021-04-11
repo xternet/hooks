@@ -16,7 +16,6 @@ export default function Content() {
   		<br></br>
   		<Button onClick={() => dispatch(decrement())}>-</Button>
   		<Button onClick={() => dispatch(increment())}>+</Button>
-
   	</Container>
   );
 }

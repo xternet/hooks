@@ -9,28 +9,26 @@ import {
   NavToggle,
 } from "../styles/rest"
 
-//T0d0 add logic to current login state
-
 export default function Nav() {
   const account = useSelector(state => state.account);
   const balance = useSelector(state => state.balance);
-  console.log(balance)
+  const network = useSelector(state => state.network);
   const dispatch = useDispatch();
-
-  const logFunc = async () => {
-    await window.ethereum.enable()
-  };
 
   return (
     <NavBar>
       <NavMenu>
-        <NavLink>Home</NavLink>
-        <NavLink>About Us</NavLink>
-        <NavLink>Contact</NavLink>
+        <NavLink>React dApp template with Hooks&Redux&Web3</NavLink>
+        <NavToggle onClick={() => dispatch(toggleTheme())}>Toggle theme</NavToggle>
       </NavMenu>
-      <NavToggle onClick={() => dispatch(toggleTheme())}>Toggle theme</NavToggle>
-      {account}{' '}{balance}
-      <Button onClick={logFunc}>Login</Button>
+      {account
+        ? <div>
+            address: <u>{account.substring(0,6) + '...' + account.substring(38,42)}</u>&nbsp;
+            network: <u>{network}</u>&nbsp;
+            balance: <u>{balance} ETH</u>&nbsp;
+          </div>
+        : <Button onClick={() => window.ethereum.enable()}>Login</Button>
+      }
     </NavBar>
   );
 }
